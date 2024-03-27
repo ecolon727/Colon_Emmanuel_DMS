@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="myGUI">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="2" vgap="2">
+    <margin top="8" left="8" bottom="8" right="8"/>
+    <constraints>
+      <xy x="20" y="1" width="876" height="544"/>
+    </constraints>
+    <properties>
+      <alignmentX value="0.5"/>
+      <background color="-3421237"/>
+      <foreground color="-1655350"/>
+      <preferredSize width="850" height="400"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="dda2e" binding="panelButtons" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="1" left="1" bottom="1" right="1"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-3421237"/>
+          <foreground color="-3421237"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="845e8" class="javax.swing.JButton" binding="tradeOnBtn">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <text value="Trade: On"/>
+            </properties>
+          </component>
+          <component id="786dd" class="javax.swing.JButton" binding="deleteIdBtn">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="Delete ID"/>
+            </properties>
+          </component>
+          <component id="43c9f" class="javax.swing.JLabel" binding="idLbl">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="TableID (Required)"/>
+            </properties>
+          </component>
+          <component id="7fee4" class="javax.swing.JTextField" binding="idTxt">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="22d7a" class="javax.swing.JLabel" binding="nameLbl">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16777216"/>
+              <text value="Name"/>
+            </properties>
+          </component>
+          <component id="a094c" class="javax.swing.JTextField" binding="nameTxt">
+            <constraints>
+              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+            </properties>
+          </component>
+          <component id="12ce3" class="javax.swing.JTextField" binding="genderTxt">
+            <constraints>
+              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+            </properties>
+          </component>
+          <component id="22bb1" class="javax.swing.JButton" binding="updTradeBtn">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Update Trade"/>
+            </properties>
+          </component>
+          <component id="f730" class="javax.swing.JButton" binding="deleteNameBtn">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Delete Name"/>
+            </properties>
+          </component>
+          <component id="80805" class="javax.swing.JButton" binding="updNameBtn">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalTextPosition value="11"/>
+              <text value="Update Name"/>
+              <verticalAlignment value="0"/>
+            </properties>
+          </component>
+          <component id="3fbdb" class="javax.swing.JButton" binding="updGenderBtm">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Update Gender"/>
+            </properties>
+          </component>
+          <component id="af4bf" class="javax.swing.JButton" binding="updAgeBtn">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Update Age"/>
+            </properties>
+          </component>
+          <component id="fd816" class="javax.swing.JButton" binding="updRaceBtn">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Update Race"/>
+            </properties>
+          </component>
+          <component id="d1733" class="javax.swing.JTextField" binding="ageTxt">
+            <constraints>
+              <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+            </properties>
+          </component>
+          <component id="abdc4" class="javax.swing.JTextField" binding="raceTxt">
+            <constraints>
+              <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+            </properties>
+          </component>
+          <component id="12ea3" class="javax.swing.JTextField" binding="tradeTxt">
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+            </properties>
+          </component>
+          <component id="59f2a" class="javax.swing.JLabel" binding="genderLbl">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16449272"/>
+              <text value="Gender"/>
+            </properties>
+          </component>
+          <component id="28422" class="javax.swing.JLabel" binding="ageLbl">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16449272"/>
+              <text value="Age"/>
+            </properties>
+          </component>
+          <component id="b76d3" class="javax.swing.JLabel" binding="raceLbl">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16449272"/>
+              <text value="Race"/>
+            </properties>
+          </component>
+          <component id="98f4e" class="javax.swing.JLabel" binding="tradeLbl">
+            <constraints>
+              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-16449272"/>
+              <text value="Trade"/>
+            </properties>
+          </component>
+          <component id="167a2" class="javax.swing.JButton" binding="tradeOffBtn">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Trade: Off"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="1bd08" binding="outputPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="5" bottom="5" right="5"/>
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-13749184"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="75eb1" class="javax.swing.JTable" binding="myTable">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="1" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="300" height="200"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+              <enabled value="true"/>
+              <rowHeight value="20"/>
+            </properties>
+          </component>
+          <component id="991e8" class="javax.swing.JTextField" binding="jtfTblMessage">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="150" height="-1"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+              <caretColor color="-983057"/>
+              <columns value="15"/>
+              <editable value="false"/>
+              <horizontalAlignment value="10"/>
+            </properties>
+          </component>
+          <component id="ea7f8" class="javax.swing.JLabel" binding="tblName">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+              <foreground color="-983057"/>
+              <text value="Affinity Chart"/>
+            </properties>
+          </component>
+          <component id="63ee2" class="javax.swing.JLabel" binding="jlConsole">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-983057"/>
+              <foreground color="-983057"/>
+              <text value="Console Log"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
