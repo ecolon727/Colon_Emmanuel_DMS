@@ -1,32 +1,40 @@
-//import necessary utilities
 import net.proteanit.sql.DbUtils;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.regex.Pattern;
 
 
-/*
-Emmanuel Colon
-Software Development 1
-March 27, 2024
+/**
+ * The GUI interface of the database.
+ * <p>
+ *     Declares all components and methods for the GUI.
+ * </p>
+ * @author Emmanuel Colon
+ *
 */
-
 public class myGUI extends JFrame {
-
-    // Jcomponents, universal variables
     private JPanel MainPanel, panelButtons, outputPanel;
      private JLabel tblName, jlConsole, nameLbl, idLbl, genderLbl, ageLbl, raceLbl, tradeLbl;;
     private JTextField jtfUserFile, idTxt, nameTxt, genderTxt, ageTxt, raceTxt, tradeTxt, jtfTblMessage;
     private JButton updNameBtn, tradeOnBtn, tradeOffBtn, deleteIdBtn, deleteNameBtn, updGenderBtm, updAgeBtn, updRaceBtn, updTradeBtn;;
     private JTable myTable;
+    private JButton printScreenBtn;
     private int checky, tableId, age;
     private String name, gender, race, trade;
     Connection con = null;
     Statement stat = null;
     ResultSet rs = null;
 
-    // connects to Bionis database containing colony9 table
+
+    /**
+     * Displays all the database table data.
+     * <p>
+     *     Connects program to database and displays its contents.
+     * </p>
+     * @exception SQLException to catch SQL input errors
+     */
     public void selectAll() {
         try {
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bionis", "root", "apple123");
@@ -40,19 +48,43 @@ public class myGUI extends JFrame {
     }
 
 
-    // Create GUI
+    /**
+     * Clears all user input text fields of the GUI.
+     * <p>
+     *     Cleared text fields allow for
+     *     swift subsequent user input.
+     * </p>
+     */
+    public void clearAllText() {
+        idTxt.setText("");
+        nameTxt.setText("");
+        genderTxt.setText("");
+        ageTxt.setText("");
+        raceTxt.setText("");
+        tradeTxt.setText("");
+    }
+
+
+    /**
+     * The GUI constructor.
+     * <p>
+     *     Sets JFrames, buttons and their methods.
+     * </p>
+     */
     public myGUI() {
         setContentPane(MainPanel);
         setTitle("Affinity Chart");
         setSize(850, 550);
         setVisible(true);
-        selectAll();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        // Buttons with action listeners
-
-        // deletes selected Id's row
         deleteIdBtn.addActionListener(new ActionListener() {
+            /**
+             * Deletes the tableId's row that the user selected.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -70,24 +102,24 @@ public class myGUI extends JFrame {
                     else {
                         jtfTblMessage.setText("Error");
                     }
-                    // clear all texts
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for tableId");
                 }
                 selectAll();
             }
         });
 
 
-        // delete selected Name's row
         deleteNameBtn.addActionListener(new ActionListener() {
+            /**
+             * Deletes the name's row that the user selected.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -104,57 +136,67 @@ public class myGUI extends JFrame {
                     else {
                         jtfTblMessage.setText("Error");
                     }
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for name");
                 }
                 selectAll();
             }
         });
 
 
-        // update to new name with selected Id
         updNameBtn.addActionListener(new ActionListener() {
+            /**
+             * Updates the user-selected name.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
-                try{
-                    String sql = "update colony9 set name = '" + nameTxt.getText() + "'" + " where tableId = " + idTxt.getText();
-                    Statement upd = con.createStatement();
+                try {
+                    String userInput = nameTxt.getText();
 
-                    checky = upd.executeUpdate(sql);
+                    // Only allows alphatebical letters into a name
+                    if(Pattern.matches("[a-zA-Z]+",userInput)) {
 
-                    if(checky > 0) {
-                        jtfTblMessage.setText("Name updated");
-                    }
-                    else if (checky == 0) {
-                        jtfTblMessage.setText("Name not found");
+                        String sql = "update colony9 set name = '" + userInput + "'" + " where tableId = " + idTxt.getText();
+                        Statement upd = con.createStatement();
+
+                        checky = upd.executeUpdate(sql);
+                        if (checky > 0) {
+                            jtfTblMessage.setText("Name updated");
+                        } else if (checky == 0) {
+                            jtfTblMessage.setText("Name not found");
+                        } else {
+                            jtfTblMessage.setText("Error");
+                        }
+
                     }
                     else {
-                        jtfTblMessage.setText("Error");
+                        jtfTblMessage.setText("Incorrect Input for name");
                     }
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
+                    // Repetitive checks to ensure all inputs are captured.
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for name");
                 }
                 selectAll();
             }
         });
 
 
-        //update to new gender with selected Id
         updGenderBtm.addActionListener(new ActionListener() {
+            /**
+             * Updates the user-selected gender.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -162,7 +204,6 @@ public class myGUI extends JFrame {
                     Statement upd = con.createStatement();
 
                     checky = upd.executeUpdate(sql);
-
                     if(checky > 0) {
                         jtfTblMessage.setText("Gender updated");
                     }
@@ -172,23 +213,24 @@ public class myGUI extends JFrame {
                     else {
                         jtfTblMessage.setText("Error");
                     }
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for gender");
                 }
                 selectAll();
             }
         });
 
 
-        // update new age with selected Id
         updAgeBtn.addActionListener(new ActionListener() {
+            /**
+             * Updates the user-selected age.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -196,7 +238,6 @@ public class myGUI extends JFrame {
                     Statement upd = con.createStatement();
 
                     checky = upd.executeUpdate(sql);
-
                     if(checky > 0) {
                         jtfTblMessage.setText("Age updated");
                     }
@@ -206,23 +247,24 @@ public class myGUI extends JFrame {
                     else {
                         jtfTblMessage.setText("Error");
                     }
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for age");
                 }
                 selectAll();
             }
         });
 
 
-        // update new race with selected Id
         updRaceBtn.addActionListener(new ActionListener() {
+            /**
+             * Updates the user-selected race.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -230,7 +272,6 @@ public class myGUI extends JFrame {
                     Statement upd = con.createStatement();
 
                     checky = upd.executeUpdate(sql);
-
                     if(checky > 0) {
                         jtfTblMessage.setText("Race updated");
                     }
@@ -240,23 +281,24 @@ public class myGUI extends JFrame {
                     else {
                         jtfTblMessage.setText("Error");
                     }
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for race");
                 }
                 selectAll();
             }
         });
 
 
-        // update to new trade with selected Id
         updTradeBtn.addActionListener(new ActionListener() {
+            /**
+             * Updates the user-selected trade.
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -264,7 +306,6 @@ public class myGUI extends JFrame {
                     Statement upd = con.createStatement();
 
                     checky = upd.executeUpdate(sql);
-
                     if(checky > 0) {
                         jtfTblMessage.setText("Trade updated");
                     }
@@ -274,23 +315,24 @@ public class myGUI extends JFrame {
                     else {
                         jtfTblMessage.setText("Error");
                     }
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input for trade");
                 }
                 selectAll();
             }
         });
 
 
-        // sets entire trade column to "on"
         tradeOnBtn.addActionListener(new ActionListener() {
+            /**
+             * Sets entire trade column to "on"
+             * @param evt sets the event to be processed.
+             * @exception SQLException displays SQL error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -298,26 +340,26 @@ public class myGUI extends JFrame {
                     Statement upd = con.createStatement();
 
                     checky = upd.executeUpdate(sql);
-
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
 
                     jtfTblMessage.setText("All trades set on");
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input");
                 }
                 selectAll();
             }
         });
 
 
-        //sets entire trade column to off
         tradeOffBtn.addActionListener(new ActionListener() {
+            /**
+             * Sets entire trade column to "off"
+             * @param evt sets the event to be processed.
+             * @exception SQLException catches any SQL exceptions and displays error messages.
+             */
             @Override
             public void actionPerformed(ActionEvent evt) {
                 try{
@@ -325,28 +367,39 @@ public class myGUI extends JFrame {
                     Statement upd = con.createStatement();
 
                     checky = upd.executeUpdate(sql);
-
-                    idTxt.setText("");
-                    nameTxt.setText("");
-                    genderTxt.setText("");
-                    ageTxt.setText("");
-                    raceTxt.setText("");
-                    tradeTxt.setText("");
+                    clearAllText();
 
                     jtfTblMessage.setText("All trades set off");
                 }
                 catch(SQLException e) {
                     e.printStackTrace();
+                    clearAllText();
+                    jtfTblMessage.setText("Incorrect Input");
                 }
                 selectAll();
             }
         });
 
 
+        printScreenBtn.addActionListener(new ActionListener() {
+            /**
+             * prints Database contents to screen
+             * @param evt sets the event to be processed.
+             * @exception SQLException catches any SQL exceptions and displays error messages.
+             */
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                selectAll();
+                clearAllText();
+            }
+        });
     }
 
 
-    //activate GUI
+    /**
+     * Main: activates the GUI and connects to MySQL database.
+     * @param args declaring the GUI
+     */
     public static void main(String[] args) {
         myGUI xc1Gui = new myGUI();
     }
