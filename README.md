@@ -1,3 +1,4 @@
-The GUI.form file is what contains all GUI elements in the correct place.
-The MyGUI.java file declares the private components and interfaces with the database when activated.
-The database comes from the bionis_script SQL file that shows the database's and its table's schema.
+College Project:
+A Swing GUI interfacing a MySQL database using JDBC methods in buttons.
+The JDBC methods only work when interacting with the "colony9" table.
+This app also assumes that databases used logged into it contain constraints for input validation.
